@@ -1,0 +1,247 @@
+
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    background-color: #000000;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 50px auto;
+    background: #2b2d31;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
+    padding: 30px;
+}
+
+h1 {
+    text-align: center;
+    color: #e74c3c; /* Use a professional color (e.g., corporate red) */
+    margin-bottom: 20px;
+    font-size: 30px; /* Larger font size for prominence */
+    font-weight: 1000; /* Bold font weight */
+    text-transform: uppercase; /* Uppercase letters for emphasis */
+    letter-spacing: 2px; /* Slight spacing between letters */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* Space for any icons or accompanying elements */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Subtle shadow for a 3D effect */
+}
+
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.form-group {
+    flex: 0 0 48%;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* Spacer occupies the remaining 48% of the row */
+.form-group.spacer {
+    flex: 0 0 48%; /* Occupies the empty space next to Annual Income */
+    visibility: hidden;
+    height: auto;
+}
+
+label {
+    font-size: 14px;
+    color: #f0f0f0;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+label i {
+    color: #e74c3c;
+}
+
+input, select {
+    background-color: #333333;
+    color: #ffffff;
+    padding: 10px 12px;
+    font-size: 14px;
+    border: 1px solid #555555;
+    border-radius: 4px;
+    transition: border-color 0.3s ease;
+}
+
+button {
+    width: 100%;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 22px;
+}
+
+button:hover {
+    background-color: #2980b9; /* Darker shade on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+.explain-button {
+    width: 100%;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 22px;
+}
+
+.explain-button:hover {
+    background-color: #2980b9; /* Darker shade on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+/* Style for the row containing Annual Income and Buttons */
+.form-row {
+    flex: 0 0 100%;
+    display: flex;
+    align-items: center; /* Align vertically */
+    justify-content: space-between; /* Spread items across the row */
+    gap: 20px; /* Space between Annual Income and Buttons */
+}
+
+/* Style for the buttons */
+.button-group {
+    display: flex;
+    gap: 10px; /* Space between buttons */
+}
+
+.predefined-section {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #2b2d31;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.predefined-section h2 {
+    margin-bottom: 15px;
+    color: #e74c3c;
+}
+
+.predefined-section form {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.button-group .btn {
+    padding: 10px 15px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.button-group .btn:hover {
+    background-color: #c0392b; /* Darker red on hover */
+}
+
+.button-group .btn.secondary-btn {
+    background-color: #3498db; /* Blue for secondary buttons */
+}
+
+.button-group .btn.secondary-btn:hover {
+    background-color: #2980b9; /* Darker blue on hover */
+}
+
+
+.top-left-logo {
+    position: absolute; /* Keep the image positioned absolutely */
+    top: 40px;          /* Adjust the distance from the top */
+    left: 150px;         /* Move it more to the right */
+    z-index: 1000;      /* Ensure it stays on top of other elements */
+}
+
+.logo-image {
+    width: 300px;       /* Increase the width for a larger image */
+    height: auto;       /* Maintain aspect ratio */
+}
+
+
+/* Spinner styles */
+.spinner {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+}
+
+.spinner div {
+    width: 40px;
+    height: 40px;
+    background-color: #e74c3c;
+    border-radius: 100%;
+    animation: spin 1.2s infinite ease-in-out;
+}
+
+@keyframes spin {
+    0%, 100% {
+        transform: scale(0);
+    }
+    50% {
+        transform: scale(1);
+    }
+}
+
+/* Loading bar styles */
+.loading-bar {
+    display: none;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(to right, #e74c3c, #3498db);
+    animation: loading 2s linear infinite;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9998;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
+}
+

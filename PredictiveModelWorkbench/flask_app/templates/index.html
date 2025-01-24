@@ -1,0 +1,275 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Default Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="top-left-logo">
+        <img src="{{ url_for('static', filename='images/Red Hat Openshift AI_0.png') }}" alt="Red Hat OpenShift AI" class="logo-image">
+    </div>
+    <div class="container">
+        <h1>Loan Default Prediction</h1>
+        <form method="POST" action="/" onsubmit="showLoadingBar(event)">
+            <!-- Form Fields -->
+
+            <div id="loading-bar" class="loading-bar"></div>
+
+            <div class="form-row">
+                <!-- Annual Income -->
+                <div class="form-group" style="flex: 1;">
+                    <label for="AMT_INCOME_TOTAL"><i class="fas fa-wallet"></i> Annual Income:</label>
+                    <input type="number" id="AMT_INCOME_TOTAL" name="AMT_INCOME_TOTAL" placeholder="Enter annual income" required>
+                </div>
+        
+                <!-- Auto-Populate Buttons -->
+                <div class="button-group">
+                    <button type="button" class="btn secondary-btn" onclick="autoPopulateForm(1)">AUTO-POPULATE 1</button>
+                    <button type="button" class="btn secondary-btn" onclick="autoPopulateForm(2)">AUTO-POPULATE 2</button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="AMT_CREDIT"><i class="fas fa-credit-card"></i> Loan Amount:</label>
+                <input type="number" id="AMT_CREDIT" name="AMT_CREDIT" placeholder="Enter loan amount" required>
+            </div>
+
+            <div class="form-group">
+                <label for="AMT_ANNUITY"><i class="fas fa-coins"></i> Annual Loan Repayment Amount:</label>
+                <input type="number" id="AMT_ANNUITY" name="AMT_ANNUITY" placeholder="Enter annual loan repayment amount" required>
+            </div>
+
+            <div class="form-group">
+                <label for="AMT_GOODS_PRICE"><i class="fas fa-tag"></i> Cost of Equipment/Inventory/Goods:</label>
+                <input type="number" id="AMT_GOODS_PRICE" name="AMT_GOODS_PRICE" placeholder="Enter cost of equipment/inventory/goods" required>
+            </div>
+
+            <div class="form-group">
+                <label for="DAYS_BIRTH"><i class="fas fa-birthday-cake"></i> Age (in years):</label>
+                <input type="number" id="DAYS_BIRTH" name="DAYS_BIRTH" placeholder="Enter age in years" step="0.01" required>
+            </div>
+
+            <div class="form-group">
+                <label for="DAYS_EMPLOYED"><i class="fas fa-briefcase"></i> Employment Duration in years ( Enter 0 if currently unemployed):</label>
+                <input type="number" id="DAYS_EMPLOYED" name="DAYS_EMPLOYED" placeholder="Enter employment duration in years" step="0.01" required>
+            </div>
+
+            <div class="form-group">
+                <label for="NAME_EDUCATION_LEVEL"><i class="fas fa-graduation-cap"></i> Highest Level of Education:</label>
+                <select id="NAME_EDUCATION_LEVEL" name="NAME_EDUCATION_LEVEL" required>
+                    <option value="Tertiary_qualification">Tertiary Qualification</option>
+                    <option value="Secondary_education">Secondary Education</option>
+                    <option value="No_secondary_or_higher_education">No Secondary or Higher Education</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="NAME_FAMILY_STATUS"><i class="fas fa-user-friends"></i> Marital Status:</label>
+                <select id="NAME_FAMILY_STATUS" name="NAME_FAMILY_STATUS" required>
+                    <option value="Married">Married</option>
+                    <option value="Single">Single</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="NAME_HOUSING_TYPE"><i class="fas fa-home"></i> Housing Type:</label>
+                <select id="NAME_HOUSING_TYPE" name="NAME_HOUSING_TYPE" required>
+                    <option value="House_apartment">Owned</option>
+                    <option value="With_parents">Rented</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="OCCUPATION_TYPE"><i class="fas fa-briefcase"></i> Occupation Type:</label>
+                <select id="OCCUPATION_TYPE" name="OCCUPATION_TYPE" required>
+                    <option value="Laborers">Laborer</option>
+                    <option value="Sales_staff">Sales Staff</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="REGION_POPULATION_RELATIVE"><i class="fas fa-map-marker-alt"></i> Population Density:</label>
+                <input type="number" id="REGION_POPULATION_RELATIVE" name="REGION_POPULATION_RELATIVE" placeholder="Enter population density of living area" step="0.01" required>
+            </div>
+
+            <div class="form-group">
+                <label for="CNT_FAM_MEMBERS"><i class="fas fa-users"></i> Number of members in Household:</label>
+                <input type="number" id="CNT_FAM_MEMBERS" name="CNT_FAM_MEMBERS" placeholder="Enter number of members in household" required>
+            </div>
+
+            <div class="form-group">
+                <label for="FLAG_MOBIL"><i class="fas fa-mobile-alt"></i> Has Mobile Phone:</label>
+                <select id="FLAG_MOBIL" name="FLAG_MOBIL" required>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="FLAG_EMAIL"><i class="fas fa-envelope"></i> Has Email:</label>
+                <select id="FLAG_EMAIL" name="FLAG_EMAIL" required>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="FLAG_WORK_PHONE"><i class="fas fa-phone"></i> Has Work Phone:</label>
+                <select id="FLAG_WORK_PHONE" name="FLAG_WORK_PHONE" required>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+
+            <button type="submit"><i class="fas fa-calculator"></i> Predict Default Risk</button>
+            <a href="/clear" class="btn btn-danger btn-sm">Clear</a>
+
+        </form>
+
+        <!-- Prediction Section -->
+        {% if prediction %}
+        <div class="result">
+            <h2><i class="fas fa-chart-line"></i> Using Predictive AI to predict Loan Repayment Behaviour:</h2>
+            <p>Predicted Loan Repayment Behaviour: {{ prediction }}</p>
+
+            {% if probability_non_default is not none and probability_default is not none %}
+            <p>Probability of Non-default: <strong>{{ probability_non_default }}%</strong></p>
+            <p>Probability of Default: <strong>{{ probability_default }}%</strong></p>
+            {% endif %}
+
+            <h2>Using Decile Methodology to Derive Credit Score:</h2>
+
+            {% if credit_score_category %}
+            <p><i class="fas fa-star"></i> Credit Score Category: <strong>{{ credit_score_category }}</strong></p>
+            {% endif %}
+            
+        </div>
+        <!-- Add Explain Button -->
+        <div class="explain-section">
+            <button type="button" id="explain-button" onclick="fetchExplanation()" style="margin-bottom: 15px;">
+                <i class="fas fa-info-circle"></i> Explain
+            </button>
+            <!-- Spinner -->
+            <div id="spinner" class="spinner" style="display: none;">
+                <div class="spinner-circle"></div>
+            </div>
+            <div id="explanation-output" class="explanation-output" style="margin-top: 20px;></div>
+        </div>
+        {% endif %}
+
+        <!-- Error Handling -->
+        {% if error %}
+        <div class="error">
+            <h2><i class="fas fa-exclamation-circle"></i> Error:</h2>
+            <p>{{ error }}</p>
+        </div>
+        {% endif %}
+    </div>
+
+    <script>
+        function showLoadingBar(event) {
+            // Prevent immediate page reload
+            document.getElementById('loading-bar').style.display = 'block';
+        }
+    </script>
+
+    <!-- Add the script -->
+    <script>
+        // Predefined datasets for auto-population
+        const presets = {
+            1: {
+                AMT_INCOME_TOTAL: 25000,
+                AMT_CREDIT: 8000,
+                AMT_ANNUITY: 2000,
+                AMT_GOODS_PRICE: 5000,
+                DAYS_BIRTH: 44,
+                DAYS_EMPLOYED: 16,
+                NAME_EDUCATION_LEVEL: "Secondary_education",
+                NAME_FAMILY_STATUS: "Single",
+                NAME_HOUSING_TYPE: "House_apartment",
+                OCCUPATION_TYPE: "Laborers",
+                REGION_POPULATION_RELATIVE: 0.04,
+                CNT_FAM_MEMBERS: 4,
+                FLAG_MOBIL: "Yes",
+                FLAG_EMAIL: "Yes",
+                FLAG_WORK_PHONE: "No",
+            },
+            2: {
+                AMT_INCOME_TOTAL: 10000,
+                AMT_CREDIT: 200000,
+                AMT_ANNUITY: 180000,
+                AMT_GOODS_PRICE: 135000,
+                DAYS_BIRTH: 82,
+                DAYS_EMPLOYED: 0,
+                NAME_EDUCATION_LEVEL: "Secondary_education",
+                NAME_FAMILY_STATUS: "Single",
+                NAME_HOUSING_TYPE: "With_parents",
+                OCCUPATION_TYPE: "Laborers",
+                REGION_POPULATION_RELATIVE: 0.01,
+                CNT_FAM_MEMBERS: 8,
+                FLAG_MOBIL: "Yes",
+                FLAG_EMAIL: "No",
+                FLAG_WORK_PHONE: "No",
+            }
+        };
+    
+        // Function to auto-populate the form
+        function autoPopulateForm(presetNumber) {
+            const data = presets[presetNumber];
+            if (!data) {
+                console.error("Invalid preset number");
+                return;
+            }
+    
+            for (const [field, value] of Object.entries(data)) {
+                const element = document.getElementById(field);
+                if (element) {
+                    if (element.tagName === "SELECT") {
+                        element.value = value;
+                    } else if (element.tagName === "INPUT") {
+                        element.value = value;
+                    }
+                }
+            }
+        }
+    </script>
+    
+
+
+    <script>
+        function showLoadingBar(event) {
+            document.getElementById('loading-bar').style.display = 'block';
+        }
+
+        async function fetchExplanation() {
+            const spinner = document.getElementById('spinner');
+            const output = document.getElementById('explanation-output');
+            output.innerHTML = ""; // Clear previous content
+            spinner.style.display = 'block'; // Show spinner
+
+            try {
+                const response = await fetch('/explain');
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder();
+
+                while (true) {
+                    const { done, value } = await reader.read();
+                    if (done) break;
+                    output.innerHTML += decoder.decode(value); // Append streamed text
+                    output.scrollTop = output.scrollHeight; // Auto-scroll to the bottom
+                }
+            } catch (error) {
+                output.innerHTML = "Error fetching explanation.";
+            } finally {
+                spinner.style.display = 'none'; // Hide spinner
+            }
+        }
+    </script>
+        
+</body>
+</html>
